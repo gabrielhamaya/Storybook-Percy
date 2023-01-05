@@ -1,0 +1,14 @@
+name: "Visual Test"
+on: pull_request
+jobs:
+  percy-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v1
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Percy
+        run: npm run percy
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
